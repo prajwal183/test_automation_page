@@ -26,7 +26,7 @@ export default function Home() {
           </div>
           <nav className="hidden flex-1 items-center justify-end space-x-2 md:flex">
             <a
-              href="https://github.com/your-username/test-automation-practice"
+              href="https://github.com/prajwal183/test_automation_page"
               target="_blank"
               rel="noreferrer"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
@@ -74,7 +74,7 @@ export default function Home() {
                   Advanced Interactions
                 </Link>
                 <Link
-                  href="https://github.com/your-username/test-automation-practice"
+                  href="https://github.com/prajwal183/test_automation_page"
                   target="_blank"
                   rel="noreferrer"
                   className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
