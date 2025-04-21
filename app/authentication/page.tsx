@@ -5,6 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  other: {
+    "google-adsense-account": "ca-pub-2870280846389596",
+  },
+}
 
 export default function AuthenticationPage() {
   return (

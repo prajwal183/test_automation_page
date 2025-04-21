@@ -13,6 +13,13 @@ import {
   MousePointerClick,
 } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  other: {
+    "google-adsense-account": "ca-pub-2870280846389596",
+  },
+}
 
 export default function Home() {
   return (

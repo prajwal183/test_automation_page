@@ -72,6 +72,9 @@ export const metadata = {
     },
   },
   category: "Technology",
+  other: {
+    "google-adsense-account": "ca-pub-2870280846389596",
+  },
     generator: 'v0.dev'
 }
 
