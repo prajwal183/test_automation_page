@@ -18,7 +18,7 @@ export default function DynamicElementsPage() {
     <div className="flex min-h-screen flex-col">
       <PageHeader />
       <main className="flex-1">
-        <div className="container py-6 md:py-8">
+        <div className="container mx-auto py-6 md:py-8">
           <div className="mb-6 flex items-center">
             <Button variant="ghost" size="sm" asChild className="mr-2">
               <Link href="/">
