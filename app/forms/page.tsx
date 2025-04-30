@@ -5,14 +5,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
-import { AdPlacement } from "@/components/ad-placement"
 import type { Metadata } from "next"
 import Script from "next/script"
 
+const description =
+  "Practice automating form interactions including inputs, checkboxes, radio buttons, and form validation with Playwright, Selenium, or Cypress."
+
 export const metadata: Metadata = {
   title: "Form Elements | Test Automation Practice",
-  description:
-    "Practice automating form interactions including inputs, checkboxes, radio buttons, and form validation with Playwright, Selenium, or Cypress.",
+  description: description,
   keywords: [
     "form automation testing",
     "input field testing",
@@ -62,16 +63,12 @@ export default function FormsPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <AdPlacement type="horizontal" id="forms-top-ad" className="mb-8" />
                   <FormElements />
-                  <AdPlacement type="horizontal" id="forms-bottom-ad" className="mt-8" />
                 </CardContent>
               </Card>
             </div>
 
             <div className="space-y-8">
-              <AdPlacement type="vertical" id="forms-sidebar-ad" />
-
               <Card className="border shadow-sm">
                 <CardHeader>
                   <CardTitle className="text-lg">Testing Tips</CardTitle>

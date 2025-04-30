@@ -4,7 +4,6 @@ import { HeroSection } from "@/components/hero-section"
 import { FrameworkLogos } from "@/components/framework-logos"
 import { FeaturesSection } from "@/components/features-section"
 import { Testimonials } from "@/components/testimonials"
-import { AdPlacement } from "@/components/ad-placement"
 import type { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -26,11 +25,7 @@ export default function Home() {
 
         <FrameworkLogos />
 
-        <AdPlacement type="horizontal" id="home-top-ad" className="mt-12" />
-
         <FeaturesSection />
-
-        <AdPlacement type="horizontal" id="home-middle-ad" />
 
         <Testimonials />
 
@@ -48,8 +43,6 @@ export default function Home() {
             </Button>
           </div>
         </section>
-
-        <AdPlacement type="horizontal" id="home-bottom-ad" className="mb-0" />
       </main>
       <PageFooter />
 
