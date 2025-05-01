@@ -10,6 +10,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import Script from "next/script"
 import { AdFrame } from "@/components/ad-frame"
+import { BannerAdFrame } from "@/components/banner-ad-frame"
 
 export const metadata: Metadata = {}
 
@@ -25,6 +26,11 @@ export default function Home() {
         {/* Ad Frame between sections */}
         <div className="container mx-auto py-8 flex justify-center">
           <AdFrame />
+        </div>
+
+        {/* Banner Ad before Features Section */}
+        <div className="container mx-auto mb-8 flex justify-center">
+          <BannerAdFrame />
         </div>
 
         <FeaturesSection />

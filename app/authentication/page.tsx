@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
 import type { Metadata } from "next"
+import { BannerAdFrame } from "@/components/banner-ad-frame"
 
 export const metadata: Metadata = {}
 
@@ -24,6 +25,12 @@ export default function AuthenticationPage() {
             </Button>
             <h1 className="text-2xl font-bold">Authentication Testing</h1>
           </div>
+
+          {/* Banner Ad before the main content */}
+          <div className="flex justify-center mb-6">
+            <BannerAdFrame />
+          </div>
+
           <Card>
             <CardHeader>
               <CardTitle>Authentication Testing</CardTitle>

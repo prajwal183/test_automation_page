@@ -1,9 +1,15 @@
 import Link from "next/link"
 import { Github, Twitter, Linkedin, Code, Mail } from "lucide-react"
+import { BannerAdFrame } from "@/components/banner-ad-frame"
 
 export function PageFooter() {
   return (
     <footer className="border-t py-12 bg-secondary/30 w-full">
+      {/* Banner Ad at the top of the footer */}
+      <div className="container mx-auto mb-8 flex justify-center">
+        <BannerAdFrame />
+      </div>
+
       <div className="container mx-auto">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>

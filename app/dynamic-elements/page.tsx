@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
 import type { Metadata } from "next"
+import { BannerAdFrame } from "@/components/banner-ad-frame"
 
 export const metadata: Metadata = {}
 
@@ -33,6 +34,11 @@ export default function DynamicElementsPage() {
             </CardHeader>
             <CardContent>
               <DynamicElements />
+
+              {/* Banner Ad after the content */}
+              <div className="flex justify-center mt-8">
+                <BannerAdFrame />
+              </div>
             </CardContent>
           </Card>
         </div>
