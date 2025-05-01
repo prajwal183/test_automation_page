@@ -8,9 +8,6 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Privacy Policy | Test Automation Practice",
   description: "Privacy policy for the Test Automation Practice website.",
-  other: {
-    "google-adsense-account": "ca-pub-2870280846389596",
-  },
 }
 
 export default function PrivacyPolicyPage() {

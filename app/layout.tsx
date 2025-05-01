@@ -3,7 +3,6 @@ import "@/app/globals.css"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
-import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -72,39 +71,19 @@ export const metadata = {
     },
   },
   category: "Technology",
-  other: {
-    "google-adsense-account": "ca-pub-2870280846389596",
-  },
+  other: {},
     generator: 'v0.dev'
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2870280846389596"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-      </head>
+      <head></head>
       <body className={`${inter.className} flex flex-col items-center`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <div className="w-full">{children}</div>
           <Toaster />
         </ThemeProvider>
-
-        {/* Auto ads configuration */}
-        <Script id="adsbygoogle-config" strategy="afterInteractive">
-          {`
-            (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-2870280846389596",
-              enable_page_level_ads: true,
-              overlays: {bottom: true}
-            });
-          `}
-        </Script>
       </body>
     </html>
   )

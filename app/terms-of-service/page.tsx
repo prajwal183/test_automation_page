@@ -8,9 +8,6 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Terms of Service | Test Automation Practice",
   description: "Terms of service for the Test Automation Practice website.",
-  other: {
-    "google-adsense-account": "ca-pub-2870280846389596",
-  },
 }
 
 export default function TermsOfServicePage() {

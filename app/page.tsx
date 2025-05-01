@@ -9,12 +9,9 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import Script from "next/script"
+import { AdFrame } from "@/components/ad-frame"
 
-export const metadata: Metadata = {
-  other: {
-    "google-adsense-account": "ca-pub-2870280846389596",
-  },
-}
+export const metadata: Metadata = {}
 
 export default function Home() {
   return (
@@ -24,6 +21,11 @@ export default function Home() {
         <HeroSection />
 
         <FrameworkLogos />
+
+        {/* Ad Frame between sections */}
+        <div className="container mx-auto py-8 flex justify-center">
+          <AdFrame />
+        </div>
 
         <FeaturesSection />
 

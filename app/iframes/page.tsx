@@ -7,11 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  other: {
-    "google-adsense-account": "ca-pub-2870280846389596",
-  },
-}
+export const metadata: Metadata = {}
 
 export default function IFramesPage() {
   return (

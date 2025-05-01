@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
 import type { Metadata } from "next"
 import Script from "next/script"
+import { AdFrame } from "@/components/ad-frame"
 
 const description =
   "Practice automating form interactions including inputs, checkboxes, radio buttons, and form validation with Playwright, Selenium, or Cypress."
@@ -29,9 +30,6 @@ export const metadata: Metadata = {
     title: "Form Elements | Test Automation Practice",
     description:
       "Practice automating form interactions including inputs, checkboxes, radio buttons, and form validation.",
-  },
-  other: {
-    "google-adsense-account": "ca-pub-2870280846389596",
   },
 }
 
@@ -127,6 +125,11 @@ export default function FormsPage() {
                   </ul>
                 </CardContent>
               </Card>
+
+              {/* Ad Frame */}
+              <div className="flex justify-center">
+                <AdFrame className="mt-4" />
+              </div>
             </div>
           </div>
         </div>
