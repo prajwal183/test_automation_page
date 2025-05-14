@@ -3,6 +3,7 @@ import "@/app/globals.css"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
+import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -78,7 +79,18 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head></head>
+      <head>
+        {/* Google Analytics */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-WCF5JKQY3H" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WCF5JKQY3H');
+          `}
+        </Script>
+      </head>
       <body className={`${inter.className} flex flex-col items-center`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <div className="w-full">{children}</div>

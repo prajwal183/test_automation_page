@@ -1,3 +1,5 @@
+"use client"
+
 import { PageHeader } from "@/components/page-header"
 import { PageFooter } from "@/components/page-footer"
 import { FormElements } from "@/components/form-elements"
@@ -5,42 +7,46 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
-import type { Metadata } from "next"
 import Script from "next/script"
 import { AdFrame } from "@/components/ad-frame"
+import { useAnalytics } from "@/hooks/use-analytics"
+import { useEffect } from "react"
 
 const description =
   "Practice automating form interactions including inputs, checkboxes, radio buttons, and form validation with Playwright, Selenium, or Cypress."
 
-export const metadata: Metadata = {
-  title: "Form Elements | Test Automation Practice",
-  description: description,
-  keywords: [
-    "form automation testing",
-    "input field testing",
-    "form validation testing",
-    "checkbox testing",
-    "radio button testing",
-    "form submission testing",
-    "Playwright form testing",
-    "Selenium form automation",
-    "Cypress form examples",
-  ],
-  openGraph: {
-    title: "Form Elements | Test Automation Practice",
-    description:
-      "Practice automating form interactions including inputs, checkboxes, radio buttons, and form validation.",
-  },
-}
-
 export default function FormsPage() {
+  // Initialize analytics tracking
+  const { trackEvent } = useAnalytics()
+
+  // Track page view on component mount
+  useEffect(() => {
+    trackEvent({
+      action: "page_view",
+      category: "pages",
+      label: "forms",
+    })
+  }, [])
+
   return (
     <div className="flex min-h-screen flex-col">
       <PageHeader />
       <main className="flex-1">
         <div className="container mx-auto py-8">
           <div className="mb-6 flex items-center">
-            <Button variant="ghost" size="sm" asChild className="mr-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              asChild
+              className="mr-2"
+              onClick={() => {
+                trackEvent({
+                  action: "click_cta",
+                  category: "navigation",
+                  label: "back_to_home_from_forms",
+                })
+              }}
+            >
               <Link href="/">
                 <ChevronLeft className="mr-1 h-4 w-4" />
                 Back
@@ -108,17 +114,47 @@ export default function FormsPage() {
                 <CardContent>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="/authentication" className="text-primary hover:underline">
+                      <Link
+                        href="/authentication"
+                        className="text-primary hover:underline"
+                        onClick={() => {
+                          trackEvent({
+                            action: "click_cta",
+                            category: "related_links",
+                            label: "forms_to_authentication",
+                          })
+                        }}
+                      >
                         Authentication Forms
                       </Link>
                     </li>
                     <li>
-                      <Link href="/dynamic-elements" className="text-primary hover:underline">
+                      <Link
+                        href="/dynamic-elements"
+                        className="text-primary hover:underline"
+                        onClick={() => {
+                          trackEvent({
+                            action: "click_cta",
+                            category: "related_links",
+                            label: "forms_to_dynamic_elements",
+                          })
+                        }}
+                      >
                         Dynamic Form Elements
                       </Link>
                     </li>
                     <li>
-                      <Link href="/advanced-interactions" className="text-primary hover:underline">
+                      <Link
+                        href="/advanced-interactions"
+                        className="text-primary hover:underline"
+                        onClick={() => {
+                          trackEvent({
+                            action: "click_cta",
+                            category: "related_links",
+                            label: "forms_to_advanced_interactions",
+                          })
+                        }}
+                      >
                         Advanced Form Interactions
                       </Link>
                     </li>
@@ -127,7 +163,16 @@ export default function FormsPage() {
               </Card>
 
               {/* Ad Frame */}
-              <div className="flex justify-center">
+              <div
+                className="flex justify-center"
+                onClick={() => {
+                  trackEvent({
+                    action: "ad_click",
+                    category: "ads",
+                    label: "forms_sidebar_ad",
+                  })
+                }}
+              >
                 <AdFrame className="mt-4" />
               </div>
             </div>

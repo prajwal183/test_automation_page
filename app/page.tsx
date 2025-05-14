@@ -1,20 +1,33 @@
+"use client"
+
 import { PageHeader } from "@/components/page-header"
 import { PageFooter } from "@/components/page-footer"
 import { HeroSection } from "@/components/hero-section"
 import { FrameworkLogos } from "@/components/framework-logos"
 import { FeaturesSection } from "@/components/features-section"
 import { Testimonials } from "@/components/testimonials"
-import type { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import Script from "next/script"
 import { AdFrame } from "@/components/ad-frame"
 import { BannerAdFrame } from "@/components/banner-ad-frame"
-
-export const metadata: Metadata = {}
+import { useAnalytics } from "@/hooks/use-analytics"
+import { useEffect } from "react"
 
 export default function Home() {
+  // Initialize analytics tracking
+  const { trackEvent } = useAnalytics()
+
+  // Track page view on component mount
+  useEffect(() => {
+    trackEvent({
+      action: "page_view",
+      category: "pages",
+      label: "home",
+    })
+  }, [])
+
   return (
     <div className="flex min-h-screen flex-col">
       <PageHeader />
@@ -44,7 +57,18 @@ export default function Home() {
               Start practicing with our comprehensive collection of test automation scenarios designed for real-world
               testing challenges.
             </p>
-            <Button asChild size="lg" className="font-medium">
+            <Button
+              asChild
+              size="lg"
+              className="font-medium"
+              onClick={() => {
+                trackEvent({
+                  action: "click_cta",
+                  category: "bottom_cta",
+                  label: "explore_practice_areas",
+                })
+              }}
+            >
               <Link href="#practice-areas">
                 Explore Practice Areas <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

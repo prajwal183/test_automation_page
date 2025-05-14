@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -12,8 +14,17 @@ import {
   MousePointerClick,
   ArrowRight,
 } from "lucide-react"
+import { trackEvent } from "@/hooks/use-analytics"
 
 export function FeaturesSection() {
+  const trackFeatureClick = (feature: string) => {
+    trackEvent({
+      action: "click_cta",
+      category: "features",
+      label: feature,
+    })
+  }
+
   return (
     <section className="py-16" id="practice-areas">
       <div className="container mx-auto">
@@ -48,7 +59,7 @@ export function FeaturesSection() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild className="w-full group">
+              <Button asChild className="w-full group" onClick={() => trackFeatureClick("forms")}>
                 <Link href="/forms" className="flex items-center justify-center">
                   Practice Forms
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -79,7 +90,7 @@ export function FeaturesSection() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild className="w-full group">
+              <Button asChild className="w-full group" onClick={() => trackFeatureClick("dynamic_elements")}>
                 <Link href="/dynamic-elements" className="flex items-center justify-center">
                   Practice Dynamic Elements
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -110,7 +121,7 @@ export function FeaturesSection() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild className="w-full group">
+              <Button asChild className="w-full group" onClick={() => trackFeatureClick("tables")}>
                 <Link href="/tables" className="flex items-center justify-center">
                   Practice Tables
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -141,7 +152,7 @@ export function FeaturesSection() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild className="w-full group">
+              <Button asChild className="w-full group" onClick={() => trackFeatureClick("alerts_modals")}>
                 <Link href="/alerts-modals" className="flex items-center justify-center">
                   Practice Alerts & Modals
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -172,7 +183,7 @@ export function FeaturesSection() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild className="w-full group">
+              <Button asChild className="w-full group" onClick={() => trackFeatureClick("drag_drop")}>
                 <Link href="/drag-drop" className="flex items-center justify-center">
                   Practice Drag & Drop
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -203,7 +214,7 @@ export function FeaturesSection() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild className="w-full group">
+              <Button asChild className="w-full group" onClick={() => trackFeatureClick("iframes")}>
                 <Link href="/iframes" className="flex items-center justify-center">
                   Practice iFrames
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -234,7 +245,7 @@ export function FeaturesSection() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild className="w-full group">
+              <Button asChild className="w-full group" onClick={() => trackFeatureClick("authentication")}>
                 <Link href="/authentication" className="flex items-center justify-center">
                   Practice Authentication
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -265,7 +276,7 @@ export function FeaturesSection() {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild className="w-full group">
+              <Button asChild className="w-full group" onClick={() => trackFeatureClick("advanced_interactions")}>
                 <Link href="/advanced-interactions" className="flex items-center justify-center">
                   Practice Advanced Interactions
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
