@@ -1,32 +1,39 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { trackEvent } from "@/hooks/use-analytics"
-import type { ButtonProps } from "@radix-ui/react-button"
+import { useAnalytics } from "@/hooks/use-analytics"
 import type { ReactNode } from "react"
 
-interface TrackedButtonProps extends ButtonProps {
+interface TrackedButtonProps {
   children: ReactNode
-  category: string
-  label: string
+  eventName: string
+  eventData?: Record<string, any>
+  className?: string
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link"
+  size?: "default" | "sm" | "lg" | "icon"
   onClick?: () => void
+  [key: string]: any
 }
 
-export function TrackedButton({ children, category, label, onClick, ...rest }: TrackedButtonProps) {
-  const handleClick = () => {
-    trackEvent({
-      action: "click_cta",
-      category,
-      label,
-    })
+export function TrackedButton({
+  children,
+  eventName,
+  eventData = {},
+  className,
+  variant = "default",
+  size = "default",
+  onClick,
+  ...props
+}: TrackedButtonProps) {
+  const { trackEvent } = useAnalytics()
 
-    if (onClick) {
-      onClick()
-    }
+  const handleClick = () => {
+    trackEvent(eventName, eventData)
+    if (onClick) onClick()
   }
 
   return (
-    <Button onClick={handleClick} {...rest}>
+    <Button className={className} variant={variant} size={size} onClick={handleClick} {...props}>
       {children}
     </Button>
   )

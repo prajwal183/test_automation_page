@@ -9,23 +9,16 @@ import { Button } from "@/components/ui/button"
 import { ChevronLeft } from "lucide-react"
 import Script from "next/script"
 import { AdFrame } from "@/components/ad-frame"
-import { useAnalytics } from "@/hooks/use-analytics"
 import { useEffect } from "react"
+import { trackPageView, trackClick } from "@/utils/analytics"
 
 const description =
   "Practice automating form interactions including inputs, checkboxes, radio buttons, and form validation with Playwright, Selenium, or Cypress."
 
 export default function FormsPage() {
-  // Initialize analytics tracking
-  const { trackEvent } = useAnalytics()
-
   // Track page view on component mount
   useEffect(() => {
-    trackEvent({
-      action: "page_view",
-      category: "pages",
-      label: "forms",
-    })
+    trackPageView("/forms")
   }, [])
 
   return (
@@ -39,13 +32,7 @@ export default function FormsPage() {
               size="sm"
               asChild
               className="mr-2"
-              onClick={() => {
-                trackEvent({
-                  action: "click_cta",
-                  category: "navigation",
-                  label: "back_to_home_from_forms",
-                })
-              }}
+              onClick={() => trackClick("navigation", "back_to_home_from_forms")}
             >
               <Link href="/">
                 <ChevronLeft className="mr-1 h-4 w-4" />
@@ -117,13 +104,7 @@ export default function FormsPage() {
                       <Link
                         href="/authentication"
                         className="text-primary hover:underline"
-                        onClick={() => {
-                          trackEvent({
-                            action: "click_cta",
-                            category: "related_links",
-                            label: "forms_to_authentication",
-                          })
-                        }}
+                        onClick={() => trackClick("related_links", "forms_to_authentication")}
                       >
                         Authentication Forms
                       </Link>
@@ -132,13 +113,7 @@ export default function FormsPage() {
                       <Link
                         href="/dynamic-elements"
                         className="text-primary hover:underline"
-                        onClick={() => {
-                          trackEvent({
-                            action: "click_cta",
-                            category: "related_links",
-                            label: "forms_to_dynamic_elements",
-                          })
-                        }}
+                        onClick={() => trackClick("related_links", "forms_to_dynamic_elements")}
                       >
                         Dynamic Form Elements
                       </Link>
@@ -147,13 +122,7 @@ export default function FormsPage() {
                       <Link
                         href="/advanced-interactions"
                         className="text-primary hover:underline"
-                        onClick={() => {
-                          trackEvent({
-                            action: "click_cta",
-                            category: "related_links",
-                            label: "forms_to_advanced_interactions",
-                          })
-                        }}
+                        onClick={() => trackClick("related_links", "forms_to_advanced_interactions")}
                       >
                         Advanced Form Interactions
                       </Link>
@@ -163,16 +132,7 @@ export default function FormsPage() {
               </Card>
 
               {/* Ad Frame */}
-              <div
-                className="flex justify-center"
-                onClick={() => {
-                  trackEvent({
-                    action: "ad_click",
-                    category: "ads",
-                    label: "forms_sidebar_ad",
-                  })
-                }}
-              >
+              <div className="flex justify-center">
                 <AdFrame className="mt-4" />
               </div>
             </div>

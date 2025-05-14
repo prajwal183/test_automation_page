@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { trackEvent } from "@/hooks/use-analytics"
+import { trackAdImpression, trackAdClick } from "@/utils/analytics"
 
 interface AdFrameProps {
   className?: string
@@ -12,44 +12,39 @@ export function AdFrame({ className = "" }: AdFrameProps) {
 
   useEffect(() => {
     // Track ad impression
-    trackEvent({
-      action: "ad_impression",
-      category: "ads",
-      label: "ad_frame",
-    })
+    trackAdImpression("ad_frame", "sidebar")
 
-    // Create ad script
-    const script = document.createElement("script")
-    script.src = "//www.highperformanceformat.com/d2bec6cb55b829b5b3961c1c54ab1dbf/invoke.js"
-    script.async = true
-
-    // Create options script
-    const optionsScript = document.createElement("script")
-    optionsScript.type = "text/javascript"
-    optionsScript.text = `
+    // Create script elements
+    const scriptOptions = document.createElement("script")
+    scriptOptions.type = "text/javascript"
+    scriptOptions.text = `
       atOptions = {
-        'key' : 'd2bec6cb55b829b5b3961c1c54ab1dbf',
+        'key' : '9846b19f60c18f8baec9cdd4fa5c87e7',
         'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
+        'height' : 300,
+        'width' : 160,
         'params' : {}
       };
     `
 
-    // Add scripts to container
+    const scriptInvoke = document.createElement("script")
+    scriptInvoke.type = "text/javascript"
+    scriptInvoke.src = "//www.highperformanceformat.com/9846b19f60c18f8baec9cdd4fa5c87e7/invoke.js"
+
+    // Append scripts to the container
     if (adContainerRef.current) {
-      adContainerRef.current.appendChild(optionsScript)
-      adContainerRef.current.appendChild(script)
+      adContainerRef.current.appendChild(scriptOptions)
+      adContainerRef.current.appendChild(scriptInvoke)
     }
 
-    // Cleanup
+    // Cleanup function
     return () => {
       if (adContainerRef.current) {
-        if (optionsScript.parentNode === adContainerRef.current) {
-          adContainerRef.current.removeChild(optionsScript)
+        if (scriptOptions.parentNode === adContainerRef.current) {
+          adContainerRef.current.removeChild(scriptOptions)
         }
-        if (script.parentNode === adContainerRef.current) {
-          adContainerRef.current.removeChild(script)
+        if (scriptInvoke.parentNode === adContainerRef.current) {
+          adContainerRef.current.removeChild(scriptInvoke)
         }
       }
     }
@@ -58,14 +53,8 @@ export function AdFrame({ className = "" }: AdFrameProps) {
   return (
     <div
       ref={adContainerRef}
-      className={`ad-container min-h-[50px] min-w-[320px] ${className}`}
-      onClick={() => {
-        trackEvent({
-          action: "ad_click",
-          category: "ads",
-          label: "ad_frame_click",
-        })
-      }}
-    ></div>
+      className={`ad-container ${className}`}
+      onClick={() => trackAdClick("ad_frame", "sidebar")}
+    />
   )
 }

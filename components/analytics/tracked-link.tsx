@@ -1,34 +1,30 @@
 "use client"
 
 import Link from "next/link"
-import { trackEvent } from "@/hooks/use-analytics"
+import { useAnalytics } from "@/hooks/use-analytics"
 import type { ReactNode } from "react"
 
 interface TrackedLinkProps {
   href: string
   children: ReactNode
+  eventName: string
+  eventData?: Record<string, any>
   className?: string
-  category: string
-  label?: string
-  onClick?: () => void
   [key: string]: any
 }
 
-export function TrackedLink({ href, children, className, category, label, onClick, ...rest }: TrackedLinkProps) {
-  const handleClick = () => {
-    trackEvent({
-      action: "click_cta",
-      category,
-      label: label || href,
-    })
+export function TrackedLink({ href, children, eventName, eventData = {}, className, ...props }: TrackedLinkProps) {
+  const { trackEvent } = useAnalytics()
 
-    if (onClick) {
-      onClick()
-    }
+  const handleClick = () => {
+    trackEvent(eventName, {
+      destination: href,
+      ...eventData,
+    })
   }
 
   return (
-    <Link href={href} className={className} onClick={handleClick} {...rest}>
+    <Link href={href} className={className} onClick={handleClick} {...props}>
       {children}
     </Link>
   )

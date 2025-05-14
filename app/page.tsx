@@ -12,20 +12,13 @@ import { ArrowRight } from "lucide-react"
 import Script from "next/script"
 import { AdFrame } from "@/components/ad-frame"
 import { BannerAdFrame } from "@/components/banner-ad-frame"
-import { useAnalytics } from "@/hooks/use-analytics"
 import { useEffect } from "react"
+import { trackPageView, trackClick } from "@/utils/analytics"
 
 export default function Home() {
-  // Initialize analytics tracking
-  const { trackEvent } = useAnalytics()
-
   // Track page view on component mount
   useEffect(() => {
-    trackEvent({
-      action: "page_view",
-      category: "pages",
-      label: "home",
-    })
+    trackPageView("/")
   }, [])
 
   return (
@@ -61,13 +54,7 @@ export default function Home() {
               asChild
               size="lg"
               className="font-medium"
-              onClick={() => {
-                trackEvent({
-                  action: "click_cta",
-                  category: "bottom_cta",
-                  label: "explore_practice_areas",
-                })
-              }}
+              onClick={() => trackClick("bottom_cta", "explore_practice_areas")}
             >
               <Link href="#practice-areas">
                 Explore Practice Areas <ArrowRight className="ml-2 h-4 w-4" />

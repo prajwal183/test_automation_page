@@ -3,32 +3,21 @@
 import { usePathname, useSearchParams } from "next/navigation"
 import { useEffect } from "react"
 
-// Define types for our events
-type EventNames = "click_cta" | "page_view" | "form_submit" | "navigation" | "feature_interaction" | "ad_click"
-
-type EventProps = {
-  action: EventNames
-  category: string
-  label?: string
-  value?: number
-  [key: string]: any
-}
-
-// Declare gtag as a global function
 declare global {
   interface Window {
-    gtag: (command: "event" | "config" | "set" | "js", action: any, params?: any) => void
+    gtag: (command: string, action: string, params?: Record<string, any>) => void
+    dataLayer: any[]
   }
 }
 
-// Track page views
-export function usePageViewTracking() {
+export function useAnalytics() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
+  // Track page views
   useEffect(() => {
     if (pathname) {
-      const url = searchParams?.toString() ? `${pathname}?${searchParams?.toString()}` : pathname
+      const url = searchParams?.size ? `${pathname}?${searchParams}` : pathname
 
       // Track page view
       window.gtag?.("event", "page_view", {
@@ -37,23 +26,19 @@ export function usePageViewTracking() {
       })
     }
   }, [pathname, searchParams])
-}
 
-// Track events
-export function trackEvent({ action, category, label, value, ...rest }: EventProps) {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("event", action, {
-      event_category: category,
-      event_label: label,
-      value: value,
-      ...rest,
-    })
+  // Function to track events
+  const trackEvent = (eventName: string, eventParams: Record<string, any> = {}) => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", eventName, eventParams)
+    }
   }
-}
-
-// Custom hook for components to use
-export function useAnalytics() {
-  usePageViewTracking()
 
   return { trackEvent }
+}
+
+export const trackEvent = (eventParams: Record<string, any> = {}) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", eventParams.action, eventParams)
+  }
 }

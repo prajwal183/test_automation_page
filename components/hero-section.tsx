@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowRight, Code2, Braces, Workflow } from "lucide-react"
-import { trackEvent } from "@/hooks/use-analytics"
+import { trackClick } from "@/utils/analytics"
 
 export function HeroSection() {
   return (
@@ -23,18 +23,7 @@ export function HeroSection() {
               automation specialists to practice and perfect their skills.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                asChild
-                size="lg"
-                className="font-medium"
-                onClick={() => {
-                  trackEvent({
-                    action: "click_cta",
-                    category: "hero",
-                    label: "start_practicing",
-                  })
-                }}
-              >
+              <Button asChild size="lg" className="font-medium" onClick={() => trackClick("hero", "start_practicing")}>
                 <Link href="#practice-areas">
                   Start Practicing <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -44,13 +33,7 @@ export function HeroSection() {
                 variant="outline"
                 size="lg"
                 className="font-medium"
-                onClick={() => {
-                  trackEvent({
-                    action: "click_cta",
-                    category: "hero",
-                    label: "github_hero",
-                  })
-                }}
+                onClick={() => trackClick("hero", "github_hero")}
               >
                 <a href="https://github.com/prajwal183/test_automation_page" target="_blank" rel="noreferrer">
                   View on GitHub
